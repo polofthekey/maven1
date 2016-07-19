@@ -26,6 +26,6 @@ public class HelloController {
         logger.info("Regresando vista de hello " + ahora);
 
         //return new ModelAndView("hello.jsp");
-        return new ModelAndView("hello", "ahora", ahora);
+        return new ModelAndView("hola", "ahora", ahora);
     }
 }

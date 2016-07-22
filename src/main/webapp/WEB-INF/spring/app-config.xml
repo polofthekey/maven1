@@ -6,7 +6,35 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+		
+	<bean id="productoManager" class="com.proy.springapp.service.SimpleProductoManager">
+		<property name="productos">
+			<list>
+				<ref bean="producto1"/>
+				<ref bean="producto2"/>
+				<ref bean="producto3"/>
+			</list>
+		</property>
+	</bean>	
 
+	<bean id="producto1" class="com.proy.springapp.domain.Producto">
+		<property name="descripcion" value="Lampara"/>
+		<property name="precio" value="5.75" />
+	</bean>
+
+	<bean id="producto2" class="com.proy.springapp.domain.Producto">
+		<property name="descripcion" value="Silla"/>
+		<property name="precio" value="22.80" />
+	</bean>
+	
+	<bean id="producto3" class="com.proy.springapp.domain.Producto">
+		<property name="descripcion" value="Mesa"/>
+		<property name="precio" value="75.20" />
+	</bean>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">		
+		<property name="basename" value="messages"/>
+	</bean>
 	<!-- Scans the classpath of this application for @Components to deploy as beans -->
     <context:component-scan base-package="com.proy.springapp.web" />
 

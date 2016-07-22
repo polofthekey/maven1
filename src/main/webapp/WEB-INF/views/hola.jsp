@@ -6,10 +6,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>H E L L O .::. JSP</title>
+<title>
+	<fmt:message key="titulo"/>
+</title>
 </head>
 <body>
-<h1>H E L L O .::. JSP</h1>
-<p>xD::::: <c:out value="${ahora}"></c:out></p>
+<h1><fmt:message key="encabezado"/></h1>
+<p>
+	<fmt:message key="mensaje"/>
+	<c:out value="${modelo.ahora}"/>
+</p>
+<h3>Productos</h3>
+	<c:forEach items="${modelo.productos}" var="pro">
+		<c:out value="${pro.descripcion} "/><i>$<c:out value="${pro.precio}"/></i></br></br>		
+	</c:forEach>
+	<br />
+	<a href="<c:url value="incrementaprecio.htm"/>">Incrementar precios</a>
 </body>
 </html>

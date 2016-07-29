@@ -25,7 +25,8 @@ public class IncrementaPrecioFormController {
 	private ProductoManager productoManager;
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String onSubmit(@Valid IncrementaPrecio incrementaPrecio, BindingResult result){
+	public String onSubmit(@Valid IncrementaPrecio incrementaPrecio, BindingResult result)
+	{
 		if(result.hasErrors()){
 			return "incrementaprecio";
 		}
@@ -53,7 +54,7 @@ public class IncrementaPrecioFormController {
 		return productoManager;
 	}
 	
-	public IncrementaPrecioFormController() {
+	/*public IncrementaPrecioFormController() {
 		// TODO Auto-generated constructor stub
-	}
+	}*/
 }

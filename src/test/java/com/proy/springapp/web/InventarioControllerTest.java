@@ -2,11 +2,14 @@ package com.proy.springapp.web;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.proy.springapp.domain.Producto;
+import com.proy.springapp.repository.InMemoryProductoDAO;
 import com.proy.springapp.service.SimpleProductoManager;
 
 public class InventarioControllerTest {
@@ -19,7 +22,10 @@ public class InventarioControllerTest {
     @Test
     public void testHandleRequestView() throws Exception{		
         InventarioController controller = new InventarioController();
-        controller.setProductoManager(new SimpleProductoManager());
+        SimpleProductoManager spm = new SimpleProductoManager();
+        spm.setProductoDAO(new InMemoryProductoDAO(new ArrayList<Producto>()));
+        controller.setProductoManager(spm);
+        //controller.setProductoManager(new SimpleProductoManager());
         ModelAndView modelAndView = controller.handleRequest(null, null);
         assertEquals("hola", modelAndView.getViewName());
         assertNotNull(modelAndView.getModel());

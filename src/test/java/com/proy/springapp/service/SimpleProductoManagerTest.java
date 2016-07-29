@@ -6,6 +6,8 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 import com.proy.springapp.domain.Producto;
+import com.proy.springapp.repository.InMemoryProductoDAO;
+import com.proy.springapp.repository.ProductoDAO;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -41,12 +43,16 @@ public class SimpleProductoManagerTest {
 		producto.setPrecio(MESA_PRECIO);
 		productos.add(producto);
 		
-		productoManager.setProductos(productos);
+		ProductoDAO productoDAO = new InMemoryProductoDAO(productos);
+		productoManager.setProductoDAO(productoDAO);
+		//Se sustituye
+		//productoManager.setProductos(productos);
 	}
 	
 	@Test
 	public void testGetProductWithNoProducts() {
 		productoManager = new SimpleProductoManager();
+		productoManager.setProductoDAO(new InMemoryProductoDAO());
 		assertNull(productoManager.getProductos());
 	}
 	
@@ -69,6 +75,8 @@ public class SimpleProductoManagerTest {
 	public void testIncrementaPrecioConNullListdeProducts(){
 		try{
 			productoManager = new SimpleProductoManager();
+			productoManager.setProductoDAO(new InMemoryProductoDAO(new ArrayList<Producto>()));
+			//productoManager.setProductos(new ArraList<Producto>());
 			productoManager.incrementarPrecio(PRECIO_POSITIVO);				
 		}
 		catch(NullPointerException e){
